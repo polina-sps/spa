@@ -6,3 +6,7 @@ body {
 ul {
     font-family: 'My Custom font';
 }
+
+nav a {
+    margin-right: 20px;
+}
