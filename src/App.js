@@ -3,7 +3,7 @@ import Resume from './components/Resume';
 
 const APP_ROUTES = {
     resume: "resume",
-    pizza: "pizza",
+    pizza: "to order pizza", //что будет показывать в адресной строке
 };
 
 class App {
