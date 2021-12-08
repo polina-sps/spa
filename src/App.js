@@ -1,9 +1,11 @@
 import Resume from './components/Resume';
+import DataBlock from './components/DataBlock';
 // import Pizza from "./components/Pizza";
 
 const APP_ROUTES = {
     resume: "resume",
     pizza: "to order pizza", //что будет показывать в адресной строке
+    comments: 'comments',
 };
 
 class App {
@@ -44,6 +46,9 @@ class App {
         // const pizza = new Pizza(container);
         return;
     }
+    renderCommentsBlock(container) {
+        const comments = new DataBlock(container);
+    }
 
     init(container) {
         window.onhashchange = () => {
@@ -63,6 +68,9 @@ class App {
                 break;
             case APP_ROUTES.pizza:
                 this.renderPizza(el);
+                break;
+            case APP_ROUTES.comments:
+                this.renderCommentsBlock(el);
                 break;
             default:
         }
