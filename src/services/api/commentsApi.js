@@ -1,5 +1,7 @@
 import createInstance from '../instance';
 import { commentsDataFromServer } from '../utils/dataFromServer';
+import createInstance from '../instance';
+import { commentsDataFromServer } from '../utils/dataFromServer';
 
 const API = createInstance();
 

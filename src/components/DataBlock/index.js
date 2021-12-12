@@ -1,7 +1,4 @@
-import {
-    getAllComments,
-    getSingleComment,
-} from '../../services/api/commentsApi';
+import { getAllReviews, deleteReview } from '../../services/api/reviewsApi';
 
 class DataBlock {
     constructor(container) {
@@ -9,36 +6,44 @@ class DataBlock {
     }
 
     async init(container) {
-        this.render(container);
-
-        const data = await getAllComments();
-        data.splice(30);
-
-        console.log(data); // - отрисовать список
-        // renderList(data); // - отрисовать список
+        const data = await getAllReviews();
+        this.render(container, data);
     }
 
-    renderButton(container, id) {
-        const button = document.createElement('button');
-        button.innerHTML = 'Fetch details';
-        button.id = id;
+    render(container, data) {
+        const ul = document.createElement('ul');
 
-        button.addEventListener('click', async(e) => {
-            const data = await getSingleComment(e.target.id);
+        data.forEach((element) => {
+            const li = document.createElement('li');
 
-            console.log(data);
+            const name = document.createElement('h1');
+            const email = document.createElement('h2');
+            const review = document.createElement('p');
+            const button = document.createElement('button');
+
+            name.innerHTML = element.name;
+            email.innerHTML = element.email;
+            review.innerHTML = element.review;
+            button.innerHTML = 'x';
+            button.id = element.id;
+
+            li.appendChild(name);
+            li.appendChild(email);
+            li.appendChild(review);
+            li.appendChild(button);
+
+            ul.appendChild(li);
         });
 
-        container.appendChild(button);
-    }
+        ul.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                deleteReview(e.target.id);
+            }
 
-    render(container) {
-        const article = document.createElement('article');
-        article.innerHTML = 'DATA BLOCK';
+            return;
+        });
 
-        this.renderButton(article, 3);
-
-        container.appendChild(article);
+        container.appendChild(ul);
     }
 }
 
