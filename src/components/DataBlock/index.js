@@ -12,6 +12,7 @@ class DataBlock {
         this.render(container);
 
         const data = await getAllComments();
+        data.splice(30);
 
         console.log(data); // - отрисовать список
         // renderList(data); // - отрисовать список
